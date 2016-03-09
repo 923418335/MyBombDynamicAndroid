@@ -22,6 +22,9 @@ import madan.com.test.project.base.BaseActivity;
 import madan.com.test.project.bean.User;
 
 
+/**
+ * 上传到github
+ */
 public class MainActivity extends BaseActivity implements View.OnClickListener {
     private Toolbar mToolbar;
     private DrawerLayout mDrawerLayout;//抽屉布局 左拉菜单
