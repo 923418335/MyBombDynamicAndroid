@@ -205,9 +205,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
      */
     private void initToolBar() {
         setSupportActionBar(mToolbar);
-        mToolbar.setTitle("Hello World");
         getSupportActionBar().setHomeButtonEnabled(true);//设置返回键可用
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Hello World");
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar, R.string.open, R.string.close) {
             @Override
