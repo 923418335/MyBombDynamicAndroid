@@ -14,4 +14,12 @@
     <string name="findPassWord">找回密码</string>
     <string name="title_activity_edit">发表心情</string>
     <string name="complete">完成</string>
+    <string name="ic">头像</string>
+    <string name="man">男</string>
+    <string name="name">昵称</string>
+    <string name="sex">性别</string>
+    <string name="tour">游客</string>
+    <string name="autograph">个性签名</string>
+    <string name="clear_cache">清除缓存</string>
+    <string name="clear_cahce">清除缓存</string>
 </resources>

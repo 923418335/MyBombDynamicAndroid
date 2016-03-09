@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_marginLeft="@dimen/setting_margin_left"
+    android:layout_marginRight="@dimen/setting_margin_left"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="60dp">
+                <TextView
+                    android:text="@string/ic"
+                    android:gravity="center"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp" />
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/mIcSetting"
+                    android:layout_width="60dp"
+                    android:layout_marginLeft="@dimen/setting_margin_left"
+                    android:src="@drawable/default_ic_man"
+                    android:layout_height="60dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="60dp">
+                <TextView
+                    android:text="@string/sex"
+                    android:gravity="center"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp" />
+                <TextView
+                    android:id="@+id/mSexSetting"
+                    android:textColor="@color/black"
+                    android:paddingLeft="@dimen/setting_margin_left"
+                    android:text="@string/man"
+                    android:layout_width="match_parent"
+                    android:gravity="start"
+                    android:layout_height="60dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="60dp">
+                <TextView
+                    android:text="@string/name"
+                    android:gravity="center"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp" />
+                <TextView
+                    android:id="@+id/mNameSetting"
+                    android:textColor="@color/black"
+                    android:paddingLeft="@dimen/setting_margin_left"
+                    android:text="@string/tour"
+                    android:layout_width="match_parent"
+                    android:gravity="start"
+                    android:layout_height="60dp" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="60dp">
+                <TextView
+                    android:text="@string/autograph"
+                    android:gravity="center"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp" />
+                <TextView
+                    android:id="@+id/mAutographSetting"
+                    android:textColor="@color/black"
+                    android:paddingLeft="@dimen/setting_margin_left"
+                    android:text="总有一天你会遇见一个阳光灿烂的人"
+                    android:layout_width="match_parent"
+                    android:gravity="start"
+                    android:layout_height="60dp" />
+            </LinearLayout>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+
+
+</LinearLayout>

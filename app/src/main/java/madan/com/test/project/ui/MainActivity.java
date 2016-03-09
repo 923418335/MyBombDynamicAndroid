@@ -34,6 +34,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private CircleImageView mUserIc;//显示用户头像
     private ImageView mUserLogout;//显示登出按钮
     private TextView mUserName;//显示用户姓名
+    private SettingFragment mSettingFragment;//设置界面的Fragment
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,6 +114,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         });
     }
 
+    enum NavigationState{
+        HOME,SETTING,COLLECT,RECOMMED,ABOUT
+    }
+    private NavigationState mNavigationState = NavigationState.HOME;
     /**
      * 初始化抽屉侧栏
      */
@@ -123,26 +128,63 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 switch (item.getItemId()) {
                     case R.id.home:
                         //主页
-                        toast("还未完成呢");
+                        mNavigationState = NavigationState.HOME;
+                        jumpNavigationFragment();
                         break;
                     case R.id.setting:
-                        toast("还未完成呢");
+                        mNavigationState = NavigationState.SETTING;
+                        jumpNavigationFragment();
+                        if(mSettingFragment == null){
+                            mSettingFragment = new SettingFragment();
+                        }
+                        getFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.mMainRootView, mSettingFragment).commit();
+                        mDrawerLayout.closeDrawers();
                         //设置
                         break;
                     case R.id.collect:
-                        toast("还未完成呢");
+                        mNavigationState = NavigationState.COLLECT;
+                        jumpNavigationFragment();
                         //收藏
                         break;
                     case R.id.recommend:
-                        toast("还未完成呢");
+                        mNavigationState = NavigationState.RECOMMED;
+                        jumpNavigationFragment();
                         //推荐
                         break;
                     case R.id.about:
-                        toast("还未完成呢");
+                        mNavigationState = NavigationState.ABOUT;
+                        jumpNavigationFragment();
                         //关于
                         break;
                 }
                 return true;
+            }
+
+            /**
+             * 根据在抽屉布局中点击的选项的不同
+             * 进入不同的Fragment
+             */
+            private void jumpNavigationFragment() {
+                if(mNavigationState == NavigationState.HOME){
+                    //进入主界面
+                    if(mShowEssayListFragment == null){
+                        mShowEssayListFragment = new ShowEssayListFragment();
+                    }else if(mShowEssayListFragment == getFragmentManager().findFragmentById(R.id.mMainRootView)){
+                        return;
+                    }
+                    getFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.mMainRootView, mShowEssayListFragment).commit();
+                }else if(mNavigationState == NavigationState.SETTING){
+                    //进入设置界面
+                    if(mShowEssayListFragment == null){
+                        mShowEssayListFragment = new ShowEssayListFragment();
+                    }else if(mShowEssayListFragment == getFragmentManager().findFragmentById(R.id.mMainRootView)){
+                        return;
+                    }
+                    getFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.mMainRootView, mShowEssayListFragment).commit();
+                }else{
+                    toast("还未完成呢");
+                }
+                mDrawerLayout.closeDrawers();
             }
         });
 
@@ -191,6 +233,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
      */
     @Override
     public void onBackPressed() {
+        if(getFragmentManager().getBackStackEntryCount() != 0){
+            getFragmentManager().popBackStack();
+            return;
+        }
         if (System.currentTimeMillis() - lastExitTime < 2000) {
             MyApplication.exit();
             super.onBackPressed();
