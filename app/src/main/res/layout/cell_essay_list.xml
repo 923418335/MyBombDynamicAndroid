@@ -1,0 +1,123 @@
+<android.support.v7.widget.CardView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="16dp"
+    android:background="@color/snow"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <RelativeLayout
+        android:padding="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:background="@drawable/backgroad_circle"
+            android:id="@+id/mDespatcherIc"
+            android:src="@drawable/default_ic_man"
+            android:layout_width="40dp"
+            android:layout_height="40dp" />
+        <TextView
+            android:text="username"
+            android:layout_marginTop="6dp"
+            android:textSize="16sp"
+            android:textColor="@color/darkmagenta"
+            android:layout_marginLeft="16dp"
+            android:layout_toRightOf="@+id/mDespatcherIc"
+            android:layout_width="wrap_content"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:layout_height="wrap_content"
+            android:id="@+id/mDespatcherId" />
+        <ImageView
+            android:layout_margin="4dp"
+            android:src="@drawable/collet"
+            android:layout_width="30dp"
+            android:id="@+id/mCollect"
+            android:layout_height="30dp"
+            android:layout_alignTop="@+id/mDespatcherIc"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+        <TextView
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="6dp"
+            android:textSize="20sp"
+            android:layout_below="@+id/mDespatcherIc"
+            android:text="（这个控件在被从父控件detach的时候，会自动取消网络请求的，即完全不用我们担心相关网络请求的生命周期问题，而且NetworkImageView还会根据你对图片设置的width和heigh自动压缩该图片不会产生多的内存，还有NetworkImageView在列表中使用不会图片错误） "
+            android:id="@+id/mEssayContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <com.android.volley.toolbox.NetworkImageView
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="6dp"
+            android:layout_below="@+id/mEssayContent"
+            android:id="@+id/mEssayImage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <LinearLayout
+            android:layout_marginTop="16dp"
+            android:id="@+id/mPinglun"
+            android:layout_alignEnd="@+id/mEssayContent"
+            android:layout_below="@+id/mEssayImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageView
+                android:src="@drawable/pinglun"
+                android:layout_width="20dp"
+                android:layout_height="20dp" />
+            <TextView
+                android:layout_marginLeft="4dp"
+                android:text="评论"
+                android:gravity="center"
+                android:textSize="16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/mFenxiang"
+            android:layout_marginTop="16dp"
+            android:layout_toLeftOf="@+id/mPinglun"
+            android:layout_below="@+id/mEssayImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="4dp"
+            android:orientation="horizontal">
+            <ImageView
+                android:src="@drawable/fenxiang"
+                android:layout_width="20dp"
+                android:layout_height="20dp" />
+            <TextView
+                android:layout_marginLeft="4dp"
+                android:text="分享"
+                android:textSize="16sp"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="16dp"
+            android:id="@+id/mZan"
+            android:layout_toLeftOf="@+id/mFenxiang"
+            android:layout_below="@+id/mEssayImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="4dp"
+            android:orientation="horizontal">
+            <ImageView
+                android:src="@drawable/zan"
+                android:layout_width="20dp"
+                android:layout_height="20dp" />
+            <TextView
+                android:layout_marginLeft="4dp"
+                android:text="0"
+                android:textSize="16sp"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+    </RelativeLayout>
+</android.support.v7.widget.CardView>

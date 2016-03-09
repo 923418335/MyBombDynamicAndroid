@@ -1,0 +1,9 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="madan.com.test.MainActivity">
+    <item
+        android:id="@+id/complete"
+        android:title="@string/complete"
+        app:showAsAction="ifRoom" />
+</menu>
