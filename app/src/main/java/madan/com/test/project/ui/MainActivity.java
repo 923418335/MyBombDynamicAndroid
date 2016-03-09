@@ -107,7 +107,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 } else {
                     //已经登录
                     //转向发表动态界面
-                    intent.setClass(MainActivity.this, EditActivity.class);
+                    intent.setClass(MainActivity.this, EditMessageActivity.class);
                 }
                 startActivity(intent);
             }
@@ -172,7 +172,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                     }else if(mShowEssayListFragment == getFragmentManager().findFragmentById(R.id.mMainRootView)){
                         return;
                     }
-                    getFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.mMainRootView, mShowEssayListFragment).commit();
+                    getFragmentManager().beginTransaction().replace(R.id.mMainRootView, mShowEssayListFragment).commit();
                 }else if(mNavigationState == NavigationState.SETTING){
                     //进入设置界面
                     if(mShowEssayListFragment == null){
@@ -180,7 +180,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                     }else if(mShowEssayListFragment == getFragmentManager().findFragmentById(R.id.mMainRootView)){
                         return;
                     }
-                    getFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.mMainRootView, mShowEssayListFragment).commit();
+                    getFragmentManager().beginTransaction().replace(R.id.mMainRootView, mShowEssayListFragment).commit();
                 }else{
                     toast("还未完成呢");
                 }
@@ -274,5 +274,48 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                         onResume();
                     }
                 }).setPositiveButton("取消", null).show();
+    }
+
+    /**
+     * SettingFragment的回调接口
+     */
+    interface SettingCallBack{
+        void changeAutoGraph(String data);
+        void changeUserName(String data);
+    }
+
+    SettingCallBack settingCallBack;
+
+    public void setSettingCallBack(SettingCallBack settingCallBack) {
+        this.settingCallBack = settingCallBack;
+    }
+
+    /**
+     * 接受数据
+     * 传给SettingFragment
+     * 接受 更改后的用户昵称，个性签名
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode == RESULT_OK){
+            switch (requestCode){
+                case SettingFragment.CHANGE_AUTOGRAPH:
+                    //更改个性签名
+                    if(settingCallBack != null){
+                        settingCallBack.changeAutoGraph(data.getStringExtra("data"));
+                    }
+                    break;
+                case SettingFragment.CHANGE_USERNAME:
+                    //更改用户昵称
+                    if(settingCallBack != null){
+                        settingCallBack.changeUserName(data.getStringExtra("data"));
+                    }
+                    break;
+            }
+        }
     }
 }

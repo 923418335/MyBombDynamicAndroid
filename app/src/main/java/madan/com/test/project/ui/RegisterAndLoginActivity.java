@@ -268,7 +268,6 @@ public class RegisterAndLoginActivity extends BaseActivity implements View.OnCli
     public void onLoginSuccess() {
         dissmissProgress();
         toast("登陆成功");
-        //// TODO: 2016/3/5 登陆成功后的回调
         finish();
     }
 

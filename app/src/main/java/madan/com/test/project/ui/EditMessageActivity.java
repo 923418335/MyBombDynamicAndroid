@@ -31,7 +31,7 @@ import madan.com.test.project.bean.User;
 import madan.com.test.project.utils.FileUtil;
 import madan.com.test.project.utils.NetworkUtil;
 
-public class EditActivity extends BaseActivity implements View.OnClickListener {
+public class EditMessageActivity extends BaseActivity implements View.OnClickListener {
     private View mCameraForPhote;
     private View mAlbumForPhote;
     private EditText mContentInput;
