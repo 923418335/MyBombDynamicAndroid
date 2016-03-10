@@ -2,15 +2,27 @@ package madan.com.test.project.ui;
 
 import android.app.Fragment;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.bmob.BmobProFile;
+import com.bmob.btp.callback.UploadListener;
+import com.soundcloud.android.crop.Crop;
+
+import java.io.File;
+import java.io.IOException;
+
+import cn.bmob.v3.datatype.BmobFile;
 import de.hdodenhof.circleimageview.CircleImageView;
 import madan.com.test.R;
+import madan.com.test.project.utils.FileUtil;
+import madan.com.test.project.utils.LogUtil;
 
 /**
  * Created by 山东娃 on 2016/3/9.
@@ -21,6 +33,7 @@ public class SettingFragment extends Fragment implements View.OnClickListener {
     private TextView mSexView;
     private TextView mUserNameView;
     private TextView mAutographView;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -106,7 +119,7 @@ public class SettingFragment extends Fragment implements View.OnClickListener {
         String request = "用户昵称";
         Intent intent = new Intent(getActivity(), EditUserMessageActivity.class);
         intent.putExtra("request", request);
-        getActivity().startActivityForResult(intent,CHANGE_USERNAME);
+        getActivity().startActivityForResult(intent, CHANGE_USERNAME);
     }
 
     /**
@@ -117,9 +130,45 @@ public class SettingFragment extends Fragment implements View.OnClickListener {
     }
 
     /**
-     * 选取图片修改用户的头像
+     *  转到相册并且获取裁剪后的图片uri
      */
     private void changeIc() {
-
+        Crop.pickImage(getActivity());
     }
+
+    /**
+     * 将新的头像上传
+     * @param uri
+     */
+    public void updataUserIc(Uri uri){
+        mIcView.setImageURI(uri);
+        File oldFile = new File(String.valueOf(FileUtil.getFileByUri(uri, getActivity())));
+        File newFile = new File(Environment.getExternalStorageDirectory() , "2.jpg");
+        if(!newFile.exists()){
+            try {
+                newFile.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        FileUtil.copyFile(oldFile.getPath(), newFile.getPath());
+        BmobProFile.getInstance(getActivity()).upload(newFile.getPath(), new UploadListener() {
+            @Override
+            public void onSuccess(String fileName, String url, BmobFile file) {
+                LogUtil.i("SettingFragment", "文件上传成功：" + fileName + ",可访问的文件地址：" + file.getUrl());
+                //// TODO: 2016/3/10 存入用户云端
+            }
+
+            @Override
+            public void onProgress(int progress) {
+            }
+
+            @Override
+            public void onError(int statuscode, String errormsg) {
+                // TODO Auto-generated method stub
+                LogUtil.i("SettingFragment", errormsg);
+            }
+        });
+    }
+
 }

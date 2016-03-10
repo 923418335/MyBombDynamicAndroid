@@ -10,6 +10,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_LOGS" />
 
+
     <application
         android:name=".project.MyApplication"
         android:allowBackup="true"
@@ -43,6 +44,7 @@
             android:name=".project.ui.EditUserMessageActivity"
             android:label="@string/title_activity_edit_user_message"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name="com.soundcloud.android.crop.CropImageActivity" /> //裁剪图片的Activity
     </application>
 
 </manifest>

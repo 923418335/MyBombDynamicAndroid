@@ -3,6 +3,7 @@ package madan.com.test.project.ui;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -13,6 +14,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.soundcloud.android.crop.Crop;
+
+import java.io.File;
 
 import cn.bmob.v3.BmobUser;
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -315,7 +320,41 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                         settingCallBack.changeUserName(data.getStringExtra("data"));
                     }
                     break;
+                case Crop.REQUEST_PICK:
+                    //图片裁剪
+                    beginCrop(data.getData());
+                    break;
+                case Crop.REQUEST_CROP:
+                    handleCrop(resultCode, data);
+                    break;
             }
+        }
+    }
+
+    /**
+     * 开始裁剪
+     * @param source
+     */
+    private void beginCrop(Uri source) {
+        Uri destination = Uri.fromFile(new File(getCacheDir(), "cropped"));
+        Crop.of(source, destination).asSquare().start(this);
+    }
+
+    /**
+     * 裁剪完成
+     * @param resultCode
+     * @param result
+     */
+    private void handleCrop(int resultCode, Intent result) {
+        if (resultCode == RESULT_OK) {
+            //裁剪后的图片uri
+            //Crop.getOutput(result)
+            if(mSettingFragment != null){
+                mSettingFragment.updataUserIc(Crop.getOutput(result));
+            }
+            log(Crop.getOutput(result).toString());
+        } else if (resultCode == Crop.RESULT_ERROR) {
+            toast(Crop.getError(result).getMessage());
         }
     }
 }

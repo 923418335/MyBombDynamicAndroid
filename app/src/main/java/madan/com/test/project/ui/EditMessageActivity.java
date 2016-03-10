@@ -235,6 +235,7 @@ public class EditMessageActivity extends BaseActivity implements View.OnClickLis
                 case REQUEST_CODE_ALBUM:
                 case REQUEST_COIDE_CAPTRUE:
                     mFiles.add(FileUtil.getFileByUri(data.getData(), this));
+                    log(mFiles.toString());
                     mPreImageAdapter.notifyDataSetChanged();
                     break;
             }

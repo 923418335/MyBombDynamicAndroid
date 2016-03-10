@@ -23,4 +23,6 @@
     <string name="clear_cache">清除缓存</string>
     <string name="clear_cahce">清除缓存</string>
     <string name="title_activity_edit_user_message">EditUserMessageActivity</string>
+    <string name="choice_albun">相册选取</string>
+    <string name="choice_camera">相机选取</string>
 </resources>

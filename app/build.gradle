@@ -39,7 +39,7 @@ dependencies {
 
     compile 'com.jcodecraeer:xrecyclerview:1.2.6'
     compile 'de.hdodenhof:circleimageview:2.0.0'
-
+    compile 'com.soundcloud.android:android-crop:1.0.1@aar'
 
 
 }
